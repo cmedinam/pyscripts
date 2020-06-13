@@ -1,0 +1,11 @@
+#!/bin/bash
+
+SLIDESHOW_PATH="/usr/bin/$3"
+SLIDESHOW_XML_PATH="/usr/share/gnome-background-properties"
+
+mkdir -p $1 
+cp res/slideshow.xml $SLIDESHOW_XML_PATH/slideshow.xml
+[[ ! -f $SLIDESHOW_PATH ]] || rm $SLIDESHOW_PATH
+cp -l res/wall_selector.py $SLIDESHOW_PATH
+chmod +x $SLIDESHOW_PATH
+ln -s $2/wallpaper.xml $1/wallpaper.xml

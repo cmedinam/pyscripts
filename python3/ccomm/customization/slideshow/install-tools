@@ -1,0 +1,27 @@
+#!/bin/bash
+
+tm_color='\033[0;33m'
+er_color='\033[1;31m'
+wr_color='\033[1;33m'
+if_color='\033[1;36m'
+reset_color='\033[0m'
+
+pr(){
+	echo -e "[ ${tm_color}$(date)${reset_color} ]$1"
+}
+
+pr_info(){
+	pr "[ ${if_color}Info${reset_color} ] ${if_color}$1${reset_color}"
+}
+
+pr_error(){
+	pr "[ ${er_color}Error${reset_color} ] ${er_color}$1${reset_color}"
+}
+
+pr_warning(){
+	pr "[ ${wr_color}Warning${reset_color} ] ${wr_color}$1${reset_color}"
+}
+
+pr_request_root(){
+	pr_error "Please run script as root"
+}

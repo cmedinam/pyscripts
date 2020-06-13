@@ -1,0 +1,34 @@
+#!/bin/bash
+
+. install-tools
+
+EXEC="ccomm-slideshow"
+INSTALL_FOLDER="$HOME/.ccomm/slideshow"
+HOME_CCOMM_SLIDESHOW="$HOME/.local/share/CCOMM/slideshow"
+GNOME_WALLPAPER_FOLDER="/usr/share/backgrounds/ccomm_walls"
+
+pr_info "Starting installation"
+[ -d $INSTALL_FOLDER ] && rm -rf $INSTALL_FOLDER 
+mkdir -p $INSTALL_FOLDER
+cp -rvf * $INSTALL_FOLDER
+cd $INSTALL_FOLDER
+
+pr_info "Preparing HOME CONFIG FOLDER"
+[ -d $HOME_CCOMM_SLIDESHOW ] && pr_info "Using existing $HOME_CCOMM_SLIDESHOW folder" || mkdir -p $HOME_CCOMM_SLIDESHOW
+cp -rvl wallpapers/* $HOME_CCOMM_SLIDESHOW
+
+pr_info "Preparing common folders"
+chmod +x configure
+su -c "$INSTALL_FOLDER/configure $GNOME_WALLPAPER_FOLDER $HOME_CCOMM_SLIDESHOW $EXEC"
+
+pr_info "Setting environment variables"
+if [[ $SHELL == "/bin/bash" ]] ; then 
+	echo "export HOME_CCOMM_SLIDESHOW=\"$HOME/.local/share/CCOMM/slideshow\"" >> $HOME/.bashrc
+	echo "alias slideshow=\"$EXEC -p \$HOME_CCOMM_SLIDESHOW\"" >> $HOME/.bashrc
+fi
+if [[ $SHELL == "/bin/zsh" ]] ; then
+	echo "export HOME_CCOMM_SLIDESHOW=\"$HOME/.local/share/CCOMM/slideshow\"" >> $HOME/.zshrc
+	echo "alias slideshow=\"$EXEC -p \$HOME_CCOMM_SLIDESHOW\"" >> $HOME/.zshrc
+fi
+
+pr_info "Successfully Installed! Restart the terminal to apply changes"
