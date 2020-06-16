@@ -11,43 +11,43 @@ if [[ UID -ne 0 ]]; then
 	pr "Run this script as root"
 else
 	if [[ -z $(which tmux) ]]; then
-		apt-get install tmux
+		apt-get install -y  tmux
 	else
 		pr "Tmux already installed!"
 	fi
 
 	if [[ -z $(which zsh) ]]; then
-		apt-get install zsh
+		apt-get install -y  zsh
 	else
 		pr "zSh already installed!"
 	fi
 
 	if [[ -z $(which curl) ]]; then
-		apt-get install curl
+		apt-get install -y  curl
 	else
 		pr "Curl already installed!"
 	fi
 
 	if [[ -z $(which git) ]]; then
-		apt-get install git
+		apt-get install -y  git
 	else
 		pr "Git already installed!"
 	fi
 	
 	if [[ -z $(which vim) ]]; then
-		apt-get install vim
+		apt-get install -y  vim
 	else
 		pr "Vim already installed!"
 	fi
 
 	if [[ -z $(which pip) ]]; then
-		apt-get install python-pip
+		apt-get install -y  python-pip
 	else
 		pr "Pip for python2 already installed!"
 	fi
 
 	if [[ -z $(which pip3) ]]; then
-		apt-get install python3-pip
+		apt-get install -y  python3-pip
 	else
 		pr "Pip for python3 already installed1"
 	fi
