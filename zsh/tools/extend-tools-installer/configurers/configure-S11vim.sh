@@ -1,7 +1,7 @@
 #!/bin/zsh
-echo "#!/bin/zsh" > ~/.vimrc
+echo "#!/bin/zsh" > $HOME/.vimrc
 echo -n "Expected powerline on " 
-if [[ $(lsb_release -sc) == 'trusty' ]]; then
+if [[ $(lsb_release -rs | cut -d "." -f1) -le 14 ]]; then
 	pwline=/usr/local/lib/python2.7/dist-packages/powerline
 	echo "$pwline"
 else
@@ -9,8 +9,8 @@ else
 	echo "$pwline"
 fi
 
-echo "set rtp+=$pwline/bindings/vim/" >> ~/.vimrc
-echo "\" Always show statusline" >> ~/.vimrc
-echo "set laststatus=2" >> ~/.vimrc
-echo "\" Use 256 colours (Use this setting only if your terminal supports 256 colours)" >> ~/.vimrc
-echo "set t_Co=256" >> ~/.vimrc
+echo "set rtp+=$pwline/bindings/vim/" >> $HOME/.vimrc
+echo "\" Always show statusline" >> $HOME/.vimrc
+echo "set laststatus=2" >> $HOME/.vimrc
+echo "\" Use 256 colours (Use this setting only if your terminal supports 256 colours)" >> $HOME/.vimrc
+echo "set t_Co=256" >> $HOME/.vimrc

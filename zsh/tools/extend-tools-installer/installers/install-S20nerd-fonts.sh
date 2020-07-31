@@ -1,10 +1,10 @@
 #!/bin/zsh
 
+cd $HOME
 # Repo Cloning
-git clone --depth 1 https://github.com/ryanoasis/nerd-fonts.git ~/nerd-fonts
+git clone --depth 1 https://github.com/ryanoasis/nerd-fonts.git $HOME/nerd-fonts
 
-. ~/nerd-fonts/install
-. ~/nerd-fonts/install.sh
+. $HOME/nerd-fonts/install.sh
 
 
 

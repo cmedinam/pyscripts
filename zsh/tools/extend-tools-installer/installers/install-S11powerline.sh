@@ -1,14 +1,8 @@
 #!/bin/zsh
 
-if [[ UID -ne 0 ]] ; then
-	echo "Please run this script as root"
+if [[ $(lsb_release -rs | cut -d "." -f1) -le 14 ]] ; then
+	[[ -z $(which pip) ]] && sudo apt-get install python-pip
+	pip install git+git://github.com/Lokaltog/powerline
 else
-	if [[ $(lsb_release -sc) == 'trusty' ]] ; then
-		if [[ -z $(which pip) ]] ; then
-			apt-get install python-pip
-		fi
-		pip install git+git://github.com/Lokaltog/powerline
-	else
-		apt-get install powerline
-	fi
+	apt-get install powerline
 fi
